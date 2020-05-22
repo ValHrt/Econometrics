@@ -1,0 +1,67 @@
+---
+title: "Econométrie Chp 1 - Ex 1"
+author: "Valentin Henriot"
+date: "5/22/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(wooldridge)
+library(dplyr)
+library(tidyr)
+```
+
+# Exercice 1
+
+```{r}
+data("wage1")
+lm(lwage ~ educ + exper + tenure, data = wage1)
+```
+
+## Application 1
+
+```{r}
+mean(wage1$educ)
+min(wage1$educ)
+max(wage1$educ)
+```
+
+Le niveau d'étude moyen dans l'échantillon est de 12,56. Le minimum est de 0 et le maximum de 18.
+
+## Application 2
+
+```{r}
+mean(wage1$wage)
+```
+
+Le salaire horaire moyen est de 5,89$.
+
+## Application 3
+
+Le CPI des USA en 1976 était de 56,9. Il est de 239,2 en 2013. (Source: usinflationcalculator.com)
+
+## Application 4
+
+```{r}
+CPIevo <- (239.2-56.9)/56.9 #calcul de l'évolution du CPI
+
+wage1$wage2013 <- wage1$wage*CPIevo
+
+mean(wage1$wage2013)
+```
+
+Le salaire moyen horaire en 2013 était de 18,89$ (après actualisation avec l'évolution du CPI). Ce résultat semble proche de la réalité.
+
+## Application 5 
+
+```{r}
+Womencount <- filter(wage1, female == "1")
+526-252
+```
+
+L'échantillon comprend 252 femmes et 274 hommes.
+
