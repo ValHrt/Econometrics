@@ -1,0 +1,66 @@
+---
+title: "Économétrie - Chapitre 1 - Ex 2"
+author: "Valentin Henriot"
+date: "5/22/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE}
+library(wooldridge)
+library(dplyr)
+library(tidyr)
+```
+
+# Exercice 2
+
+```{r}
+bwght
+```
+
+## Application 1
+
+```{r}
+Womencount <- filter(bwght, male == 0)
+Womencount2 <- filter(Womencount, cigs > 0)
+```
+
+Il y a 665 femmes dans l'échantillon. Parmi ces 665 femmes, 112 fument durant leur grossesse. 
+
+## Application 2
+
+```{r}
+mean(Womencount$cigs)
+```
+
+Le nombre moyen de cigarettes fumées par jour pour les femmes est de 2,09.
+Ici, la moyenne n'a pas forcèment de sens pour la femme "typique" car bien que la moyenne s'établisse à 2,09, il faut prendre en compte le fait qu'une majorité de femmes ont indiqué ne pas fumer pendant leur grossesse, de fait, la moyenne est biaisée et n'a pas réellement de sens.
+
+## Application 3
+
+```{r}
+mean(Womencount2$cigs)
+```
+
+Pour les femmes qui déclarent fumer pendant leur grossesse, la moyenne de cigarettes fumées par jour s'établit à 12,41. Nous ne pouvons pas comparer ce résultat avec celui de la question précédente car ici, il s'agit uniquement des femmes qui déclarent fumer. Ainsi, le résultat n'est pas biaisé et représentatif pour cette catégorie de l'échantillon.
+
+## Application 4
+
+```{r}
+mean(bwght$fatheduc, na.rm = TRUE)
+sum(is.na(bwght$fatheduc))
+```
+
+La moyenne d'années d'études du père est de 13,18. Cette moyenne est calculée sur 1192 observations seulement car cette variable contient des valeurs manquantes. La moyenne est donc calculée sans prendre en compte ces valeurs manquantes. (196 valeurs manquantes)
+
+## Application 5
+
+```{r}
+mean(bwght$faminc)
+sd(bwght$faminc)
+```
+
+Le revenu moyen de la famille selon cet échantillon est de 29026 dollars par an. L'écart type s'établit lui à 18739 dollars.
