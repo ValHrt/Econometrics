@@ -1,0 +1,60 @@
+---
+title: "Économétrie - Chapitre 1 - Ex 4"
+author: "Valentin Henriot"
+date: "5/23/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE}
+library(wooldridge)
+library(dplyr)
+library(tidyr)
+```
+
+# Exercice 4
+
+```{r}
+jtrain2
+```
+
+## Application 1
+
+```{r}
+Formation <- filter(jtrain2, train == 1)
+185/445*100
+```
+
+On remarque que 185 hommes ont suivi la formation professionnelle. Cela représente 41,57% de l'échantillon.
+
+## Application 2
+
+```{r}
+NoFormation <- filter(jtrain2, train == 0)
+mean(NoFormation$re78)
+mean(Formation$re78)
+```
+
+En comparant les résultats obtenus, nous constatons que les hommes n'ayant pas suivi de formations professionnelles touchent en moyenne 4554 dollars contre 6349 dollars pour les personnes l'ayant suivi. En nous plaçant d'un point de vue économique, cette différence semble substantielle.
+
+## Application 3
+
+```{r}
+UnemForma <- filter(Formation, unem78 == 1)
+45/185*100
+UnemNoForma <- filter(NoFormation, unem78 == 1)
+92/260*100
+```
+
+Sur les 185 personnes ayant suivi une formation professionnelle, 45 étaient au chômage en 1978, soit un pourcentage de 24,32%.
+Concernant les 260 personnes n'ayant pas suivi de formation professionnelle, 92 étaient au chômage en 1978, soit un pourcentage de 35,38%.
+Cette différence semble aller de paire avec le salaire obtenu en fonction de la réalisation de formations professionnelles ou non. Il existe donc une corrélation positive entre la formation professionnelle et le salaire et une corrélation négative entre la formation professionnelle et le chômage selon cet échantillon.
+
+## Application 4
+
+À partir des résultats obtenus aux questions 2 et 3, nous remarquons que la formation professionnelle semble être un atout pour le travailler, tant au niveau du salaire moyen que du risque de chômage. 
+
+Pour rendre cette analyse plus convaincante, il faudrait tenir compte du niveau d'éducation des personnes, de leur âge mais également de la durée des formations professionnelles suivies.

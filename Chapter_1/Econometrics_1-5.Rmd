@@ -1,0 +1,56 @@
+---
+title: "Économétrie - Chapitre 1 - Ex 5"
+author: "Valentin Henriot"
+date: "5/23/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE}
+library(wooldridge)
+library(dplyr)
+library(tidyr)
+```
+
+# Exercice 5
+
+```{r}
+fertil2
+```
+
+## Application 1
+
+```{r}
+min(fertil2$children)
+max(fertil2$children)
+mean(fertil2$children)
+```
+
+Le plus petit nombre d'enfants dans cet échantillon est de 0, le plus élevé est de 13 et la moyenne s'établit à 2,27 enfants.
+
+## Application 2
+
+```{r}
+Electricity <- filter(fertil2, electric == 1)
+611/4361*100
+```
+
+611 femmes sur les 4361 de l'échantillon ont l'electricité à la maison. Soit un pourcentage de 14,01%.
+
+## Application 3
+
+```{r}
+NoElectricity <- filter(fertil2, electric == 0)
+mean(Electricity$children)
+mean(NoElectricity$children)
+```
+
+Les femmes qui ont l'électricité à la maison ont en moyenne 1,89 enfant contre 2,32 pour les femmes ne l'ayant pas.
+Il semblerait donc que l'électricité soit un facteur influant sur le nombre d'enfants.
+
+## Application 4
+
+Nous pouvons conclure en partie sur le fait que le présence de l'électricité au domicile influe sur le nombre d'enfants. Toutefois, la présence de l'électricité ne peut se suffir à elle seule car cette variable est également la résultante du lieu de vie, du niveau d'éducation, etc. 
