@@ -1,0 +1,85 @@
+---
+title: "Économétrie - Chapitre 1 - Ex 3"
+author: "Valentin Henriot"
+date: "5/23/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(wooldridge)
+library(dplyr)
+library(tidyr)
+```
+
+# Exercice 3
+
+```{r}
+meap01
+```
+
+## Application 1
+
+```{r}
+min(meap01$math4)
+max(meap01$math4)
+```
+
+Le minimum pour la variable math4 est de 0, le maximum est de 100. Ici nous avons donc une amplitude de 100. Cette amplitude n'a pas vraiment de sens car il s'agit de deux valeurs extrèmes.
+
+## Application 2
+
+```{r}
+mathreussite <- filter(meap01, math4 == 100)
+38/1823
+```
+
+38 écoles ont un taux de réussite de 100% en maths. Si l'on calcule la proportion que représentent ces écoles par rapport à l'ensemble de l'échantillon, nous trouvons un ratio de 2,08%.
+
+## Application 3
+
+```{r}
+mathreussite2 <- filter(meap01, math4 == 50)
+```
+
+17 écoles ont un taux de réussite égal à 50% exactement.
+
+## Application 4
+
+```{r}
+mean(meap01$math4)
+mean(meap01$read4)
+```
+
+En comparant les taux de réussite moyen en lecture et en maths, nous remarquons que l'examen de lecture est le plus dur à obtenir puisque le taux de réussite moyen est de 60,1% contre 71,9% pour les maths.
+
+## Application 5
+
+```{r}
+cor.test(meap01$math4, meap01$read4, method = "pearson")
+```
+
+En effectuant un test de corrélation de Pearson, nous constatons que la p-value est inférieure à 0,05, ce qui veut dire qu'il existe une relation significative entre ces deux variables. Le coefficient de corrélation est de 0,842, indiquant qu'il existe une relation positive entre ces deux variables. Plus les résultats en maths sont bons et plus les résultats en lecture devraient l'être.
+
+## Application 6
+
+```{r}
+mean(meap01$exppp)
+sd(meap01$exppp)
+```
+
+Les dépenses moyennes par élève sont de 5194,86 dollars. L'écart type est de 1091,89 dollars. Cette différence n'est pas réellement significative.
+
+## Application 7
+
+```{r}
+#Ecole A -> 6000
+#Ecole B -> 5500
+(6000-5500)/5500
+100*(log(6000)-log(5500))
+```
+
+Les dépenses de l'école A dépensent de 9% les dépenses de l'école B. Si l'on compare avec l'approximation de variation de pourcentgae (avec le logarithme naturel), nous constatons un faible écart : 0,3%.
