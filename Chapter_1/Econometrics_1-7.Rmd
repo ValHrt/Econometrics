@@ -1,0 +1,57 @@
+---
+title: "Économétrie - Chapitre 1 - Ex 7"
+author: "Valentin Henriot"
+date: "5/23/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE}
+library(wooldridge)
+library(dplyr)
+library(tidyr)
+```
+
+# Exercice 7
+
+```{r}
+alcohol
+```
+
+## Application 1
+
+```{r}
+AbuseAlc <- filter(alcohol, abuse == 1)
+974/9822*100
+Employed <- filter(alcohol, status == 3)
+8822/9822*100
+```
+
+974 hommes sur 9822 déclarent abuser de l'alcool, soit un pourcentage de 9,91%. 
+8822 hommes sur 9822 déclarent travailler, soit un taux d'emploi de 89,82%
+
+## Application 2
+
+```{r}
+AbuseAlcEmp <- filter(AbuseAlc, status == 3)
+850/974*100
+```
+
+Sur les 974 hommes qui déclarent abuser de l'alcool, 850 déclarent travailler, soit un taux d'emploi de 87,27% pour cette population.
+
+## Application 3
+
+```{r}
+NoAbuseAlc <- filter(alcohol, abuse == 0)
+NoAbuseAlcEmp <- filter(NoAbuseAlc, status == 3)
+7972/8848*100
+```
+
+Sur les 8848 hommes qui déclarent ne pas abuser de l'alcool, 7972 déclarent travailler, soit un taux d'emploi de 90,09% pour cette population.
+
+## Application 4
+
+En raison de la faible différence (environ 3%) entre les résultats obtenus aux applications 2 et 3, nous ne pouvons pas conclure que l'abus d'alcool est une cause de chômage. Il est possible que cette variable influe légérement sur le taux d'emploi, néanmoins, en l'état, nous ne pouvons pas conclure sur ce point.

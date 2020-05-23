@@ -1,0 +1,61 @@
+---
+title: "Économétrie - Chapitre 1 - Ex 6"
+author: "Valentin Henriot"
+date: "5/23/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE}
+library(wooldridge)
+library(dplyr)
+library(tidyr)
+```
+
+# Exercice 6
+
+```{r}
+countymurders
+```
+
+## Application 1
+
+```{r}
+Murders96 <- filter(countymurders, year == 1996)
+length(unique(Murders96$countyid))
+NoMurder <- filter(Murders96, murders == 0)
+length(unique(NoMurder$countyid))
+NoExec <- filter(Murders96, execs > 0)
+31/2197*100
+```
+
+Il y a 2197 comtés dans la base de données. Pour l'année 1996, 1051 comtés n'ont recensé aucun meurtre.
+
+Seuls 31 comtés ont procédé à des exécutions en 1996, soit un pourcentage de 1,41%.
+
+## Application 2
+
+```{r}
+max(Murders96$murders)
+max(Murders96$execs)
+mean(Murders96$execs)
+```
+
+Le plus grand nombre de meurtres enregistrés dans un comté est de 1403, le plus grand nombre d'éxécutions pour un comté est de 3.
+
+Le nombre moyen d'éxécutions par comté est de 0,0159. Ce chiffre est faible car il faut prendre en compte le fait que tous les comtés ne pratiquent pas la peine de mort et parmi ceux qui la pratiquent, certains ne l'appliquent pas réellement dans les faits.
+
+## Application 3
+
+```{r}
+cor.test(Murders96$murders, Murders96$execs, method = "pearson")
+```
+
+Le coefficient de corrélation trouvé est de 0,209. Ce coefficient est faible.
+
+## Application 4
+
+Cette corrélation positive s'explique principalement par le fait que plus les meutres sont nombreux, plus il y a d'éxécutions (et non l'inverse).
