@@ -1,0 +1,72 @@
+---
+title: "Econométrie Chp 2 - Cours"
+author: "Valentin Henriot"
+date: "6/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+```{r}
+library(wooldridge)
+library(dplyr)
+library(tidyr)
+library(stats)
+```
+
+# Page 56 - Exemple 2.3
+
+```{r}
+ceosal1
+```
+
+```{r}
+LinearRegCeo <- lm(salary ~ roe, data = ceosal1)
+```
+
+```{r}
+summary(LinearRegCeo)
+```
+
+```{r}
+plot(salary ~ roe, data = ceosal1, col=2)
+abline(LinearRegCeo,col=3,lwd=2)
+bs <- round(coef(LinearRegCeo), 3) 
+lmlab <- paste0("hp = ", bs[1],
+             ifelse(sign(bs[2])==1, " + ", " - "), abs(bs[2]), " qsec ")
+mtext(lmlab, 3, line=-2)
+```
+
+# Page 58 - Exemple 2.4
+
+```{r}
+wage1
+```
+
+```{r}
+LinearRegEduc <- lm(wage ~ educ, data = wage1)
+```
+
+```{r}
+summary(LinearRegEduc)
+```
+
+```{r}
+plot(wage ~ educ, data = wage1, col=2)
+abline(LinearRegEduc,col=3,lwd=2)
+bs <- round(coef(LinearRegEduc), 3) 
+lmlab <- paste0("hp = ", bs[1],
+             ifelse(sign(bs[2])==1, " + ", " - "), abs(bs[2]), " qsec ")
+mtext(lmlab, 3, line=-2)
+```
+
+# Page 58 - Exemple 2.4-2
+
+```{r}
+CoeffInflation <- 19.06/5.9
+3.42*CoeffInflation
+```
+
+Le salaire horaire pour ceux ayant un niveau educ=8 en 1976 serait de 11.04 dollars contre 3.42 dollars en 1976.
