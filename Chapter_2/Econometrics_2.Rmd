@@ -38,6 +38,11 @@ lmlab <- paste0("hp = ", bs[1],
              ifelse(sign(bs[2])==1, " + ", " - "), abs(bs[2]), " qsec ")
 mtext(lmlab, 3, line=-2)
 ```
+Fonction permettant d'afficher les résidus (valeur prédite - valeur réelle)
+
+```{r}
+resid(LinearRegCeo)
+```
 
 # Page 58 - Exemple 2.4
 
